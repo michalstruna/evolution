@@ -25,7 +25,8 @@ def get_pos_diff(pos1: Pos, pos2: Pos) -> Pos:
 
 def get_rotation_to_target(pos: Pos, target: Pos, rotation: float, step: float) -> float:
 	path_polar = cartesian_to_polar(get_pos_diff(pos, target))
-	return path_polar[0]
+	diff_angle = norm_rad(path_polar[0] - rotation)
+	return rotation + min(step, diff_angle) * (1 if diff_angle < math.pi else -1)
 
 def pos_equal(pos1: Pos, pos2: Pos) -> bool:
-	return round(pos1[0]) == round(pos2[0]) and round(pos1[1]) == round(pos2[1])
+	return abs(pos1[0] - pos2[0]) < 1 and abs(pos1[1] - pos2[1]) < 1

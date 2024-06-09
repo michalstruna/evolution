@@ -10,16 +10,13 @@ entities = list(map(lambda _: Prey(
 	pos=(random.randint(100, width - 100), random.randint(100, height - 100)),
 	sight=random.randint(1, 10),
 	size=random.randint(5, 30),
-	speed=random.random()
-), range(100)))
+	speed=random.random() * 2,
+	stability=random.random() / 20
+), range(10)))
 
 def update():
-	i = 0
-
 	for entity in entities:
-		i += 1
 		entity.move()
-		entity.rotate(1 if i % 2 == 0 else -1)
 		entity.render()
 
 loop_screen(screen, update)

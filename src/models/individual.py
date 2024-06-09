@@ -37,8 +37,6 @@ class Individual(ABC):
 			self.target = get_random_pos(self.screen.get_width(), self.screen.get_height())
 
 		self.rotation = get_rotation_to_target(self.pos, self.target, self.rotation, self.stability)
-
-
 		self.pos = move(self.pos, self.rotation, self.speed)
 
 
@@ -84,8 +82,10 @@ class Prey(Individual):
 				self.pos[1] - self.size * math.sin(self.rotation)
 			),
 			(
-				self.pos[0] - self.size * math.cos(self.rotation) * self.stability * 300,
-				self.pos[1] - self.size * math.sin(self.rotation) * self.stability * 300
+				self.pos[0] - self.size * math.cos(self.rotation) * self.stability * 100,
+				self.pos[1] - self.size * math.sin(self.rotation) * self.stability * 100
 			),
-			int(self.stability * 500)
+			int(self.stability * 200)
 		)
+
+		pygame.draw.circle(self.screen, Color.RED, self.target, 10)
